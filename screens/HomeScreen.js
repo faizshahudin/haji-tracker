@@ -1,31 +1,49 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
-//import { Button } from 'react-native-elements';
-//import Icon from 'react-native-vector-icons/FontAwesome';
+import { View } from 'react-native';
+import { Button, Text } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { AppLoading, Font } from 'expo';
 
 class HomeScreen extends Component {
+    state = {
+        isReady: false
+    }
+
     static navigationOptions = ({ navigation }) => ({
         title: 'Home'
     })
-/*
-    renderIcon(name) {
-        return (
-            <Icon
-                name
-                size={15}
-                color='white'
-            />
-        );
+
+    componentWillMount() {
+        (async() => {
+            await Font.loadAsync({
+                'Lobster':require('../assets/fonts/Lobster/Lobster-Regular.ttf')
+            });
+
+            this.setState({ isReady: true });
+        })();
     }
-*/
+
     render() {
+        if (!this.state.isReady) {
+            return <AppLoading />;
+        }
+
         return (
             <View style={styles.containerStyle}>
-                <Text>Welcome to Haji TrackAR!</Text>
+                <Text h4 style={styles.titleStyle}>Welcome to Haji TrackAR!</Text>
                 <Button
                     onPress={() => this.props.navigation.navigate('scan')}
                     title="SCAN YOUR TAG"
-                    color="#d1512f"
+                    color="#000"
+                    titleStyle={{ fontWeight: "700" }}
+                    buttonStyle={{
+                        backgroundColor: "#f5dc00",
+                        width: 300,
+                        height: 45,
+                        borderColor: "#000",
+                        borderWidth: 0,
+                        borderRadius: 5  
+                    }}
                 />
             </View>
         );
@@ -35,8 +53,13 @@ class HomeScreen extends Component {
 const styles = {
     containerStyle : {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
+        backgroundColor: '#f7f8f9'
+    },
+    titleStyle: {
+        fontFamily: 'Lobster',
+        color: '#000'
     }
 }
 

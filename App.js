@@ -16,6 +16,15 @@ export default class App extends React.Component {
       scan: { screen: ScanScreen },
       detail: { screen: DetailScreen },
       locate: { screen: LocateScreen }
+    }, {
+      tabBarOptions: {
+        labelStyle: {
+          fontSize: 8
+        },
+        tabStyle: {
+          height: 49
+        }
+      }
     });
 
     return (
