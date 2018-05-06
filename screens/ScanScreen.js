@@ -20,6 +20,7 @@ class ScanScreen extends Component {
   }
 
   handledReadBarcode = result => {
+      console.log('scan_result: ', result);
     if (result.data !== this.props.barcodeData) {
         LayoutAnimation.spring();
         this.props.storeBarcode(result);

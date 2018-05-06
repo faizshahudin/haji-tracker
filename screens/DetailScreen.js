@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 class DetailScreen extends Component {
-    componentWillMount() {
+    componentDidMount() {
         if (this.props.detailData !== '') {
             let data = JSON.parse(this.props.detailData);
 
@@ -36,6 +36,7 @@ class DetailScreen extends Component {
                 </View>
             );
         } else {
+            console.log('detailData: ', this.props.detailData);
             return (
                 <View style={styles.containerStyle}>
                     <View style={styles.profilepicWrap}>
