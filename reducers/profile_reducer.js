@@ -8,7 +8,8 @@ const INITIAL_STATE = {
     packageName: '',
     hotelName: '',
     hotelLatitude: '',
-    hotelLongitude: ''
+    hotelLongitude: '',
+    emergency: ''
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -21,7 +22,8 @@ export default function (state = INITIAL_STATE, action) {
                 packageName: action.payload.package,
                 hotelName: action.payload.hotel,
                 hotelLatitude: action.payload.hotelLatitude,
-                hotelLongitude: action.payload.hotelLongitude
+                hotelLongitude: action.payload.hotelLongitude,
+                emergency: action.payload.emergency
             };
         default: 
             return state;

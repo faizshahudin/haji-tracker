@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux';
+import Communications from 'react-native-communications';
 import * as actions from '../actions';
 
 class DetailScreen extends Component {
@@ -36,7 +37,6 @@ class DetailScreen extends Component {
                 </View>
             );
         } else {
-            console.log('detailData: ', this.props.detailData);
             return (
                 <View style={styles.containerStyle}>
                     <View style={styles.profilepicWrap}>
@@ -46,6 +46,9 @@ class DetailScreen extends Component {
                     <Text>Passport Number: {this.props.passportNumber}</Text>
                     <Text>Package Name: {this.props.packageName}</Text>
                     <Text>Hotel Name: {this.props.hotelName}</Text>
+                    <TouchableOpacity onPress={() => Communications.phonecall(this.props.emergency, true)}>
+                        <Text>Emergency Contact: {this.props.emergency}</Text>
+                    </TouchableOpacity>
                 </View>
             );
         }
@@ -83,7 +86,8 @@ function mapStateToProps({ scan, profile }) {
         name: profile.name,
         passportNumber: profile.passportNumber,
         packageName: profile.packageName,
-        hotelName: profile.hotelName
+        hotelName: profile.hotelName,
+        emergency: profile.emergency
     };
 }
 
